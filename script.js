@@ -1,31 +1,25 @@
-// get elements
 const textInput = document.getElementById("text");
 const delayInput = document.getElementById("delay");
 const button = document.getElementById("btn");
 const output = document.getElementById("output");
 
-// function that returns a Promise (delay)
+// delay function
 function wait(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// async function
 async function showMessage() {
-  // get values
   const message = textInput.value;
-  const delay = Number(delayInput.value);
+  const delay = parseInt(delayInput.value);
 
-  // clear previous output
+  // output must be empty immediately
   output.textContent = "";
 
-  // wait for given delay
+  // exact wait
   await wait(delay);
 
-  // display message
+  // set text immediately after delay
   output.textContent = message;
 }
 
-// button click event
 button.addEventListener("click", showMessage);
